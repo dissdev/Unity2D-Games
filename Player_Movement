@@ -1,0 +1,22 @@
+float speed = 5.0f;
+    public Transform obj; //Drag and drop the player
+
+    void Update()
+    {
+        
+
+        movement();
+    }
+
+    
+    void movement(){
+
+        float h = Input.GetAxis("Horizontal"); // Get the X axis postion
+        float v = Input.GetAxis("Vertical"); // Get the Y position
+
+        Vector3 move = new Vector3(h,v,0); 
+        move = move.normalized * speed * Time.deltaTime; 
+        obj.transform.position += move;
+
+    }
+}
