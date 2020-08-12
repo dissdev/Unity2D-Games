@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy_1 : MonoBehaviour
+{
+    public GameObject Player; // player assignments
+    public float offset = -90.0f; //change the offset to look at the player
+      public GameObject spawnpoint; //bullet spawnppoint of the enemy
+    public GameObject bulletprefab; //bulletprefab item
+    private float shotdelay; 
+    public float shotdelaystart = 1f; //shot delay recoil
+
+    float distance;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Player = GameObject.Find("Me"); //assign the player to the enemy
+        //spawnpoint = GameObject.Find("enemyspawnpoint");
+        //bulletprefab = GameObject.Find("bullet");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        distance = Mathf.Abs(Vector2.Distance(transform.position,Player.transform.position)); //measure the distance between the enemy qnad the player
+    if(distance<10){ // if the distance between the player and the enemy is lesser thgan than 10
+        Vector3 difference = Player.transform.position-transform.position; //Then enemy look at the player (all below three code lines)
+        float rotz = Mathf.Atan2(difference.y,difference.x)*Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f,0f,(rotz+offset));
+        shoot(); //and start shooting
+    }
+        
+        Debug.Log(distance); show the distance in the console
+    
+         
+    
+       
+        
+    }
+
+    void shoot(){
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,spawnpoint.transform.up);//position, direction and length of the line // shoot the ray from the spawnpoint of the enemy
+       
+       if(hit && shotdelay<=0){ //if any thin is hit and the delay between shots is lesser than 0 then instantiate the prefab
+           
+            Instantiate(bulletprefab,spawnpoint.transform.position,transform.rotation);
+            shotdelay = shotdelaystart;
+
+       }
+       else{
+        shotdelay -= Time.deltaTime; //otherwise 
+        }
+    }
+        
+     
+}
