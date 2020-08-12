@@ -1,0 +1,11 @@
+if(shotdelay<=0){
+        if(Input.GetMouseButtonDown(0)){
+            Instantiate(bulletprefab,spawnpoint.position,transform.rotation);
+            shotdelay = shotdelaystart;
+        }
+
+    }
+    else{
+        shotdelay -= Time.deltaTime;
+    }
+    }
