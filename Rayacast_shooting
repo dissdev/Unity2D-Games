@@ -1,0 +1,11 @@
+void Update(){
+
+  shoot();
+
+}
+
+void shoot(){
+   if(Input.GetMouseButtonDown(0)){
+            RaycastHit2D hit = Physics2D.Raycast(transform.position,transform.TransformDirection(Vector2.up),5f);//position, direction and length of the line
+            }
+}
