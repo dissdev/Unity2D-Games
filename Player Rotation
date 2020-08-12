@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Palyer_Movement : MonoBehaviour
+{
+    void Update()
+    {
+        facemouse();
+    }
+
+    void facemouse(){
+        Vector3 mouseposition = Input.mousePosition; //take the mouse position to vector3 variable
+        mouseposition = Camera.main.ScreenToWorldPoint(mouseposition); //Convert the mouse position coordinates from screen to game world
+
+        Vector2 direction = new Vector2(
+            mouseposition.x-transform.position.x, //take the direction from position
+            mouseposition.y-transform.position.y //take the direction from potion
+        );
+
+        transform.up = direction; rotate to the direction
+
+    }
+}
