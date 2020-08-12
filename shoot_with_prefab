@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
+
+//This script should be attached to the player weapon
     
     public Transform spawnpoint;
     public GameObject bulletprefab;
@@ -20,7 +22,7 @@ public class Shoot : MonoBehaviour
     void Shotdead(){
 
         if(Input.GetMouseButtonDown(0)){
-            Instantiate(bulletprefab,spawnpoint.position,spawnpoint.rotation);
+            Instantiate(bulletprefab,spawnpoint.position,transform.rotation); //rotation should be weapon rotation, not the spawnpoint rotataion
 
         }
 
