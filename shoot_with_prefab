@@ -1,0 +1,28 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Shoot : MonoBehaviour
+{
+    
+    public Transform spawnpoint;
+    public GameObject bulletprefab;
+
+    void Start(){
+
+    }
+  
+    void Update()
+    {
+        Shotdead();
+    }
+
+    void Shotdead(){
+
+        if(Input.GetMouseButtonDown(0)){
+            Instantiate(bulletprefab,spawnpoint.position,spawnpoint.rotation);
+
+        }
+
+    }
+}
