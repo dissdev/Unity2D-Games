@@ -1,0 +1,20 @@
+//when player should have have limits in his area of moving. try this code. This line of code should be added to the 
+//player movement script.
+This is only applicable if the player movemnt is done using "transform.position" parameters.
+//try the following
+
+void Update(){
+  movement();
+}
+
+void movement(){
+
+        float h = Input.GetAxis("Horizontal"); //read X axis 
+        float v = Input.GetAxis("Vertical");  //read Y axis
+
+        Vector3 move = new Vector3(h,v,0); 
+        move = move.normalized * speed * Time.deltaTime;
+        obj.transform.position += move;
+        obj.transform.position = new Vector3(Mathf.Clamp(obj.transform.position.x,-20,+20f),obj.transform.position.y,0); //clamping the are aof movement in nx axis.
+
+    }
